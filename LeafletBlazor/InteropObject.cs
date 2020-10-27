@@ -25,7 +25,7 @@ namespace Darnton.Blazor.Leaflet
         /// JavaScript runtime object used to create it.
         /// </summary>
         /// <param name="jsRuntime">The JavaScript runtime instance used to create the object</param>
-        /// <returns>A task that represents the async create opertion</returns>
+        /// <returns>A task that represents the async create operation.</returns>
         public async Task BindToJsRuntime(IJSRuntime jsRuntime)
         {
             _jsObjRef = await CreateJsObjectRef(jsRuntime);

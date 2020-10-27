@@ -18,8 +18,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\user\source\repos\LeafletBlazor\LeafletBlazor\LeafletBlazor.xml</DocumentationFile>
+    <DocumentationFile>C:\Users\user\source\repos\LeafletBlazor\LeafletBlazor\Darnton.Blazor.Leaflet.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="LeafletBlazor.xml" />
+  </ItemGroup>
 
 
   <ItemGroup>
