@@ -1,0 +1,285 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LeafletBlazor</name>
+    </assembly>
+    <members>
+        <member name="T:Darnton.Blazor.Leaflet.InteropObject">
+            <summary>
+            Abstract base class for types that represent JavaScript objects.
+            </summary>
+        </member>
+        <member name="F:Darnton.Blazor.Leaflet.InteropObject._jsObjRef">
+            <summary>
+            The JavaScript runtime object reference.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.InteropObject.JsObjectRefId">
+            <summary>
+            The ID of the JavaScript runtime object reference, used as key to a collection of JavaScript objects.
+            </summary>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.InteropObject.BindToJsRuntime(Microsoft.JSInterop.IJSRuntime)">
+            <summary>
+            Creates the JavaScript object, stores a reference to it and the
+            JavaScript runtime object used to create it.
+            </summary>
+            <param name="jsRuntime">The JavaScript runtime instance used to create the object</param>
+            <returns>A task that represents the async create opertion</returns>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.InteropObject.CreateJsObjectRef(Microsoft.JSInterop.IJSRuntime)">
+            <summary>
+            Creates the JavaScript object
+            </summary>
+            <param name="jsRuntime">The JavaScript runtime instance used to create the object.</param>
+            <returns>The reference to the new JavaScript object.</returns>
+        </member>
+        <member name="T:Darnton.Blazor.Leaflet.JsRuntimeObjectRef">
+            <summary>
+            A reference to a JavaScript object, used to invoke functions
+            on previously created objects.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.JsRuntimeObjectRef.JsObjectRefId">
+            <summary>
+            JavaScript object reference id, used as key to a collection of JavaScript objects.
+            </summary>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.JsRuntimeObjectRef.DisposeAsync">
+            <inheritdoc/>
+        </member>
+        <member name="T:Darnton.Blazor.Leaflet.LeafletMap.InteractiveLayer">
+            <summary>
+            A <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Layer"/> that the user can interact with.
+            <see href="https://leafletjs.com/reference-1.7.1.html#interactive-layer"/>
+            </summary>
+        </member>
+        <member name="T:Darnton.Blazor.Leaflet.LeafletMap.LatLng">
+            <summary>
+            A point with a latitude and longitude.
+            <see href="https://leafletjs.com/reference-1.7.1.html#latlng"/>
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.LatLng.Lat">
+            <summary>
+            Latitude in degrees.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.LatLng.Lng">
+            <summary>
+            Longitude in degrees.
+            </summary>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.LatLng.#ctor(System.Double,System.Double)">
+            <summary>
+            Constructs a LatLng
+            </summary>
+            <param name="lat">Latitude in degrees.</param>
+            <param name="lng">Longitude in degrees.</param>
+        </member>
+        <member name="T:Darnton.Blazor.Leaflet.LeafletMap.Layer">
+            <summary>
+            A layer that can be added to a <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Map"/>.
+            </summary>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Layer.AddTo(Darnton.Blazor.Leaflet.LeafletMap.Map)">
+            <summary>
+            Adds the layer to a <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Map"/>.
+            </summary>
+            <param name="map">The <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Map"/> to add the Layer to.</param>
+            <returns>The Layer.</returns>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Layer.Remove">
+            <summary>
+            Removes the Layer from the <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Map"/> it's currently active on.
+            </summary>
+            <returns>The Layer.</returns>
+        </member>
+        <member name="T:Darnton.Blazor.Leaflet.LeafletMap.LayerOptions">
+            <summary>
+            The options used when creating a <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Layer"/>.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.LayerOptions.Attribution">
+            <summary>
+            The string shown in the attribution control.
+            May be required to show, e.g., tile provider's copyright message.
+            </summary>
+        </member>
+        <member name="T:Darnton.Blazor.Leaflet.LeafletMap.LeafletMapBase">
+            <summary>
+            The LeafletMap Razor component used to render a <see cref="P:Darnton.Blazor.Leaflet.LeafletMap.LeafletMapBase.Map"/> and <see cref="P:Darnton.Blazor.Leaflet.LeafletMap.LeafletMapBase.TileLayer"/>.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.LeafletMapBase.JSRuntime">
+            <summary>
+            The JavaScript runtime instance used to create the <see cref="P:Darnton.Blazor.Leaflet.LeafletMap.LeafletMapBase.Map"/>.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.LeafletMapBase.Map">
+            <summary>
+            The Leaflet <see cref="P:Darnton.Blazor.Leaflet.LeafletMap.LeafletMapBase.Map"/> to be rendered by the component.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.LeafletMapBase.TileLayer">
+            <summary>
+            The <see cref="P:Darnton.Blazor.Leaflet.LeafletMap.LeafletMapBase.TileLayer"/> to be added when the <see cref="P:Darnton.Blazor.Leaflet.LeafletMap.LeafletMapBase.Map"/> is rendered.
+            </summary>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.LeafletMapBase.OnAfterRenderAsync(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Darnton.Blazor.Leaflet.LeafletMap.Map">
+            <summary>
+            A leaflet Map object, used to create a Map on a page.
+            <see href="https://leafletjs.com/reference-1.7.1.html#map-methods-for-modifying-map-state"/>.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.Map.ElementId">
+            <summary>
+            The ID of the HTML element the map will be rendered in.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.Map.Options">
+            <summary>
+            The <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.MapOptions"/> used to create the Map.
+            </summary>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Map.#ctor(System.String,Darnton.Blazor.Leaflet.LeafletMap.MapOptions)">
+            <summary>
+            Constructs a Map.
+            </summary>
+            <param name="elementId">The ID of the HTML element the map will be rendered in.</param>
+            <param name="options">The <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.MapOptions"/> used to create the Map.</param>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Map.CreateJsObjectRef(Microsoft.JSInterop.IJSRuntime)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Darnton.Blazor.Leaflet.LeafletMap.MapOptions">
+            <summary>
+            The options used when creating a <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Map"/>.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.MapOptions.Center">
+            <summary>
+            The initial centre point of the <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Map"/>.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.MapOptions.Zoom">
+            <summary>
+            The initial zoom level of the <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Map"/>.
+            </summary>
+        </member>
+        <member name="T:Darnton.Blazor.Leaflet.LeafletMap.Marker">
+            <summary>
+            A clickable, draggable icon that can be added to a <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Map"/>
+            <see href="https://leafletjs.com/reference-1.7.1.html#marker"/>
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.Marker.LatLng">
+            <summary>
+            The initial position of the marker.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.Marker.Options">
+            <summary>
+            The <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.MarkerOptions"/> used to create the marker.
+            </summary>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Marker.#ctor(Darnton.Blazor.Leaflet.LeafletMap.LatLng,Darnton.Blazor.Leaflet.LeafletMap.MarkerOptions)">
+            <summary>
+            Constructs a marker
+            </summary>
+            <param name="latlng">The initial position of the marker.</param>
+            <param name="options">The <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.MarkerOptions"/> used to create the marker.</param>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Marker.CreateJsObjectRef(Microsoft.JSInterop.IJSRuntime)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Darnton.Blazor.Leaflet.LeafletMap.MarkerOptions">
+            <summary>
+            The options used when creating a <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Marker"/>.
+            </summary>
+        </member>
+        <member name="T:Darnton.Blazor.Leaflet.LeafletMap.Path">
+            <summary>
+            A vector overlay <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Layer"/>.
+            <see href="https://leafletjs.com/reference-1.7.1.html#path"/>
+            </summary>
+        </member>
+        <member name="T:Darnton.Blazor.Leaflet.LeafletMap.Polyline">
+            <summary>
+            A vector line overlay <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Layer"/>.
+            <see href="https://leafletjs.com/reference-1.7.1.html#polyline"/>
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.Polyline.LatLngs">
+            <summary>
+            An array of points defining the shape.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.Polyline.Options">
+            <summary>
+            The <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.PolylineOptions"/> used to define the Polyline.
+            </summary>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Polyline.#ctor(System.Collections.Generic.IEnumerable{Darnton.Blazor.Leaflet.LeafletMap.LatLng},Darnton.Blazor.Leaflet.LeafletMap.PolylineOptions)">
+            <summary>
+            Constructs a Polyline.
+            </summary>
+            <param name="latLngs">An array of points defining the shape.</param>
+            <param name="options">The <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.PolylineOptions"/> used to define the polyline.</param>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Polyline.CreateJsObjectRef(Microsoft.JSInterop.IJSRuntime)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Polyline.AddLatLng(Darnton.Blazor.Leaflet.LeafletMap.LatLng)">
+            <summary>
+            Adds a point to the Polyline
+            </summary>
+            <param name="latLng">The point to add to the Polyline.</param>
+            <returns>The Polyline.</returns>
+        </member>
+        <member name="T:Darnton.Blazor.Leaflet.LeafletMap.PolylineOptions">
+            <summary>
+            The options used when creating a <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Polyline"/>.
+            </summary>
+        </member>
+        <member name="T:Darnton.Blazor.Leaflet.LeafletMap.TileLayer">
+            <summary>
+            A raster <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Layer"/> used to display tiled images.
+            <see href="https://leafletjs.com/reference-1.7.1.html#tilelayer"/>
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.TileLayer.UrlTemplate">
+            <summary>
+            A URL template string with formatting options for subdomain, zoom level, coordinates, and resolution.
+            </summary>
+            <example>
+            <code>
+            http://{s}.somedomain.com/blabla/{z}/{x}/{y}{r}.png
+            </code>
+            </example>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.TileLayer.Options">
+            <summary>
+            The <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.TileLayerOptions"/> used to create the TileLayer.
+            </summary>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.TileLayer.#ctor(System.String,Darnton.Blazor.Leaflet.LeafletMap.TileLayerOptions)">
+            <summary>
+            Constructs a TileLayer
+            </summary>
+            <param name="urlTemplate">A URL template string with formatting options for subdomain, zoom level, coordinates, and resolution.</param>
+            <param name="options">The <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.TileLayerOptions"/> used to create the TileLayer.</param>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.TileLayer.CreateJsObjectRef(Microsoft.JSInterop.IJSRuntime)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Darnton.Blazor.Leaflet.LeafletMap.TileLayerOptions">
+            <summary>
+            The options used to create a <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.TileLayer"/>.
+            </summary>
+        </member>
+    </members>
+</doc>
