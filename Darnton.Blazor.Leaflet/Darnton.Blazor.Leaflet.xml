@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>LeafletBlazor</name>
+        <name>Darnton.Blazor.Leaflet</name>
     </assembly>
     <members>
         <member name="T:Darnton.Blazor.Leaflet.InteropObject">
@@ -37,7 +37,7 @@
         <member name="T:Darnton.Blazor.Leaflet.JsRuntimeObjectRef">
             <summary>
             A reference to a JavaScript object, used to invoke functions
-            on previously created objects.
+            via JavaScript interop on previously created objects.
             </summary>
         </member>
         <member name="P:Darnton.Blazor.Leaflet.JsRuntimeObjectRef.JsObjectRefId">
@@ -46,7 +46,10 @@
             </summary>
         </member>
         <member name="M:Darnton.Blazor.Leaflet.JsRuntimeObjectRef.DisposeAsync">
-            <inheritdoc/>
+            <summary>
+            Disposes the reference to the object. Removes the reference from the JavaScript collection
+            </summary>
+            <returns>A ValueTask representing the async JavaScript invocation to remove the reference.</returns>
         </member>
         <member name="T:Darnton.Blazor.Leaflet.LeafletMap.InteractiveLayer">
             <summary>
