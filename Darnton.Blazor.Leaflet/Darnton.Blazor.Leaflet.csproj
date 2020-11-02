@@ -33,7 +33,7 @@
 
 
   <ItemGroup>
-    <None Include="wwwroot\leaflet-map\leaflet-map.js" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>

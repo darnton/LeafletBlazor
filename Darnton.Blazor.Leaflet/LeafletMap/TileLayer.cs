@@ -36,9 +36,9 @@ namespace Darnton.Blazor.Leaflet.LeafletMap
         }
 
         /// <inheritdoc/>
-        protected override async Task<JsRuntimeObjectRef> CreateJsObjectRef(IJSRuntime jsRuntime)
+        protected override async Task<IJSObjectReference> CreateJsObjectRef(IJSRuntime jsRuntime)
         {
-            return await jsRuntime.InvokeAsync<JsRuntimeObjectRef>("LeafletMap.tileLayer", UrlTemplate, Options);
+            return await jsRuntime.InvokeAsync<IJSObjectReference>("L.tileLayer", UrlTemplate, Options);
         }
     }
 }

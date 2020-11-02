@@ -12,13 +12,7 @@ namespace Darnton.Blazor.Leaflet
         /// <summary>
         /// The JavaScript runtime object reference.
         /// </summary>
-        protected JsRuntimeObjectRef _jsObjRef;
-
-        /// <summary>
-        /// The ID of the JavaScript runtime object reference, used as key to a collection of JavaScript objects.
-        /// </summary>
-        [JsonPropertyName("__jsObjRefId")]
-        public int JsObjectRefId { get { return _jsObjRef.JsObjectRefId; } }
+        public IJSObjectReference JSObjectReference;
 
         /// <summary>
         /// Creates the JavaScript object, stores a reference to it and the
@@ -26,10 +20,9 @@ namespace Darnton.Blazor.Leaflet
         /// </summary>
         /// <param name="jsRuntime">The JavaScript runtime instance used to create the object</param>
         /// <returns>A task that represents the async create operation.</returns>
-        public async Task BindToJsRuntime(IJSRuntime jsRuntime)
+        public async Task BindJsObjectReference(IJSRuntime jsRuntime)
         {
-            _jsObjRef = await CreateJsObjectRef(jsRuntime);
-            _jsObjRef.JSRuntime = jsRuntime;
+            JSObjectReference = await CreateJsObjectRef(jsRuntime);
         }
 
         /// <summary>
@@ -37,6 +30,6 @@ namespace Darnton.Blazor.Leaflet
         /// </summary>
         /// <param name="jsRuntime">The JavaScript runtime instance used to create the object.</param>
         /// <returns>The reference to the new JavaScript object.</returns>
-        protected abstract Task<JsRuntimeObjectRef> CreateJsObjectRef(IJSRuntime jsRuntime);
+        protected abstract Task<IJSObjectReference> CreateJsObjectRef(IJSRuntime jsRuntime);
     }
 }

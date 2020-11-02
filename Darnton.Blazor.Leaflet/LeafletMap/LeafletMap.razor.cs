@@ -27,8 +27,8 @@ namespace Darnton.Blazor.Leaflet.LeafletMap
         {
             if (firstRender)
             {
-                await Map.BindToJsRuntime(JSRuntime);
-                await TileLayer.BindToJsRuntime(JSRuntime);
+                await Map.BindJsObjectReference(JSRuntime);
+                await TileLayer.BindJsObjectReference(JSRuntime);
                 await TileLayer.AddTo(Map);
             }
         }

@@ -15,7 +15,7 @@ namespace Darnton.Blazor.Leaflet.LeafletMap
         /// <returns>The Layer.</returns>
         public async Task<Layer> AddTo(Map map)
         {
-            await _jsObjRef.JSRuntime.InvokeVoidAsync("LeafletMap.Layer.addTo", this, map);
+            await JSObjectReference.InvokeVoidAsync("addTo", map.JSObjectReference);
             return this;
         }
 
@@ -25,7 +25,7 @@ namespace Darnton.Blazor.Leaflet.LeafletMap
         /// <returns>The Layer.</returns>
         public async Task<Layer> Remove()
         {
-            await _jsObjRef.JSRuntime.InvokeVoidAsync("LeafletMap.Layer.remove", this);
+            await JSObjectReference.InvokeVoidAsync("remove");
             return this;
         }
     }
