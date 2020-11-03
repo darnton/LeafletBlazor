@@ -29,6 +29,9 @@
             <param name="jsRuntime">The JavaScript runtime instance used to create the object.</param>
             <returns>The reference to the new JavaScript object.</returns>
         </member>
+        <member name="M:Darnton.Blazor.Leaflet.InteropObject.DisposeAsync">
+            <inheritdoc/>
+        </member>
         <member name="T:Darnton.Blazor.Leaflet.LeafletMap.InteractiveLayer">
             <summary>
             A <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Layer"/> that the user can interact with.

@@ -1,5 +1,5 @@
 ﻿using Microsoft.JSInterop;
-using System.Text.Json.Serialization;
+using System;
 using System.Threading.Tasks;
 
 namespace Darnton.Blazor.Leaflet
@@ -7,7 +7,7 @@ namespace Darnton.Blazor.Leaflet
     /// <summary>
     /// Abstract base class for types that represent JavaScript objects.
     /// </summary>
-    public abstract class InteropObject
+    public abstract class InteropObject : IAsyncDisposable
     {
         /// <summary>
         /// The JavaScript runtime object reference.
@@ -31,5 +31,11 @@ namespace Darnton.Blazor.Leaflet
         /// <param name="jsRuntime">The JavaScript runtime instance used to create the object.</param>
         /// <returns>The reference to the new JavaScript object.</returns>
         protected abstract Task<IJSObjectReference> CreateJsObjectRef(IJSRuntime jsRuntime);
+
+        /// <inheritdoc/>
+        public async ValueTask DisposeAsync()
+        {
+            await JSObjectReference.DisposeAsync();
+        }
     }
 }

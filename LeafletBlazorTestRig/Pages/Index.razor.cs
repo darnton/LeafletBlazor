@@ -1,13 +1,13 @@
 ﻿using Darnton.Blazor.Leaflet.LeafletMap;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System;
+using System.Threading.Tasks;
 
 namespace LeafletBlazorTestRig.Pages
 {
-    public class IndexBase : ComponentBase
+    public class IndexBase : ComponentBase, IAsyncDisposable
     {
-        [Inject] public IJSRuntime JSRuntime { get; set; }
-
         protected Map PositionMap;
         protected TileLayer OpenStreetMapsTileLayer;
 
@@ -26,6 +26,12 @@ namespace LeafletBlazorTestRig.Pages
                         @"<a href=""https://creativecommons.org/licenses/by-sa/2.0/"">CC-BY-SA</a>"
                 }
             );
+        }
+
+        public async ValueTask DisposeAsync()
+        {
+            await OpenStreetMapsTileLayer.DisposeAsync();
+            await PositionMap.DisposeAsync();
         }
     }
 }
