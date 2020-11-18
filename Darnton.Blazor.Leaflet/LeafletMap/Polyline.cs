@@ -35,9 +35,9 @@ namespace Darnton.Blazor.Leaflet.LeafletMap
         }
 
         /// <inheritdoc/>
-        protected override async Task<IJSObjectReference> CreateJsObjectRef(IJSRuntime jsRuntime)
+        protected override async Task<IJSObjectReference> CreateJsObjectRef()
         {
-            return await jsRuntime.InvokeAsync<IJSObjectReference>("L.polyline", LatLngs.ToArray(), Options);
+            return await _jsRuntime.InvokeAsync<IJSObjectReference>("L.polyline", LatLngs.ToArray(), Options);
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Darnton.Blazor.Leaflet.LeafletMap
         /// <returns>The Polyline.</returns>
         public async Task<Polyline> AddLatLng(LatLng latLng)
         {
-            await JSObjectReference.InvokeVoidAsync("addLatLng", latLng);
+            await _leafletMapModule.InvokeVoidAsync("LeafletMap.Polyline.addLatLng", this.JSObjectReference, latLng);
             return this;
         }
     }
