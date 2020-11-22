@@ -15,7 +15,13 @@ namespace Darnton.Blazor.Leaflet.LeafletMap
         /// <returns>The Layer.</returns>
         public async Task<Layer> AddTo(Map map)
         {
-            await _leafletMapModule.InvokeVoidAsync("LeafletMap.Layer.addTo", this.JSObjectReference, map.JSObjectReference);
+            if (JSBinder is null)
+            {
+                await BindJsObjectReference(map.JSBinder);
+            }
+            GuardAgainstNullBinding("Cannot add layer to map. No JavaScript binding has been set up.");
+            var module = await JSBinder.GetLeafletMapModule();
+            await module.InvokeVoidAsync("LeafletMap.Layer.addTo", this.JSObjectReference, map.JSObjectReference);
             return this;
         }
 
@@ -25,7 +31,9 @@ namespace Darnton.Blazor.Leaflet.LeafletMap
         /// <returns>The Layer.</returns>
         public async Task<Layer> Remove()
         {
-            await _leafletMapModule.InvokeVoidAsync("LeafletMap.Layer.remove", this.JSObjectReference);
+            GuardAgainstNullBinding("Cannot remove layer from map. No JavaScript binding has been set up.");
+            var module = await JSBinder.GetLeafletMapModule();
+            await module.InvokeVoidAsync("LeafletMap.Layer.remove", this.JSObjectReference);
             return this;
         }
     }

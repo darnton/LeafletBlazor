@@ -33,7 +33,7 @@ namespace Darnton.Blazor.Leaflet.LeafletMap
         /// <inheritdoc/>
         protected override async Task<IJSObjectReference> CreateJsObjectRef()
         {
-            return await _jsRuntime.InvokeAsync<IJSObjectReference>("L.map", ElementId, Options);
+            return await JSBinder.JSRuntime.InvokeAsync<IJSObjectReference>("L.map", ElementId, Options);
         }
     }
 }

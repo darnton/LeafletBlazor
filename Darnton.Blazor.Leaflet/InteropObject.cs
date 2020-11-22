@@ -10,31 +10,24 @@ namespace Darnton.Blazor.Leaflet
     public abstract class InteropObject : IAsyncDisposable
     {
         /// <summary>
-        /// The runtime used to create the JavaScript object.
+        /// The JavaScript binder used to talk to the interop layer.
         /// </summary>
-        protected IJSRuntime _jsRuntime;
-
-        /// <summary>
-        /// The JavaScript module reference used to invoke functions that wrap Leaflet behaviour.
-        /// </summary>
-        protected IJSObjectReference _leafletMapModule;
+        internal LeafletMapJSBinder JSBinder;
 
         /// <summary>
         /// The JavaScript runtime object reference.
         /// </summary>
-        public IJSObjectReference JSObjectReference;
+        internal IJSObjectReference JSObjectReference;
 
         /// <summary>
         /// Creates the JavaScript object, stores a reference to it and the
         /// JavaScript runtime object used to create it.
         /// </summary>
-        /// <param name="jsRuntime">The JavaScript runtime instance used to create the object</param>
-        /// <param name="leafletMapModule">The module reference used to invoke this component's JavaScript function</param>
+        /// <param name="jsBinder">The JavaScript binder used to talk to the interop layer.</param>
         /// <returns>A task that represents the async create operation.</returns>
-        public async Task BindJsObjectReference(IJSRuntime jsRuntime, IJSObjectReference leafletMapModule)
+        internal async Task BindJsObjectReference(LeafletMapJSBinder jsBinder)
         {
-            _jsRuntime = jsRuntime;
-            _leafletMapModule = leafletMapModule;
+            JSBinder = jsBinder;
             JSObjectReference = await CreateJsObjectRef();
         }
 
@@ -48,6 +41,19 @@ namespace Darnton.Blazor.Leaflet
         public async ValueTask DisposeAsync()
         {
             await JSObjectReference.DisposeAsync();
+        }
+
+        /// <summary>
+        /// Throws an <see cref="InvalidOperationException"/> if the JavaScript binding has not been
+        /// set up for this object.
+        /// </summary>
+        /// <param name="nullBindingMessage">The error message to be used when an exception is thrown.</param>
+        protected void GuardAgainstNullBinding(string nullBindingMessage)
+        {
+            if (JSBinder is null)
+            {
+                throw new InvalidOperationException(nullBindingMessage);
+            }
         }
     }
 }

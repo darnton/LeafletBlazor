@@ -37,7 +37,7 @@ namespace Darnton.Blazor.Leaflet.LeafletMap
         /// <inheritdoc/>
         protected override async Task<IJSObjectReference> CreateJsObjectRef()
         {
-            return await _jsRuntime.InvokeAsync<IJSObjectReference>("L.polyline", LatLngs.ToArray(), Options);
+            return await JSBinder.JSRuntime.InvokeAsync<IJSObjectReference>("L.polyline", LatLngs.ToArray(), Options);
         }
 
         /// <summary>
@@ -47,7 +47,9 @@ namespace Darnton.Blazor.Leaflet.LeafletMap
         /// <returns>The Polyline.</returns>
         public async Task<Polyline> AddLatLng(LatLng latLng)
         {
-            await _leafletMapModule.InvokeVoidAsync("LeafletMap.Polyline.addLatLng", this.JSObjectReference, latLng);
+            GuardAgainstNullBinding("Cannot remove layer from map. No JavaScript binding has been set up.");
+            var module = await JSBinder.GetLeafletMapModule();
+            await module.InvokeVoidAsync("LeafletMap.Polyline.addLatLng", this.JSObjectReference, latLng);
             return this;
         }
     }

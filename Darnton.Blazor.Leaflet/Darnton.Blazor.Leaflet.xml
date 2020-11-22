@@ -9,14 +9,9 @@
             Abstract base class for types that represent JavaScript objects.
             </summary>
         </member>
-        <member name="F:Darnton.Blazor.Leaflet.InteropObject._jsRuntime">
+        <member name="F:Darnton.Blazor.Leaflet.InteropObject.JSBinder">
             <summary>
-            The runtime used to create the JavaScript object.
-            </summary>
-        </member>
-        <member name="F:Darnton.Blazor.Leaflet.InteropObject._leafletMapModule">
-            <summary>
-            The JavaScript module reference used to invoke functions that wrap Leaflet behaviour.
+            The JavaScript binder used to talk to the interop layer.
             </summary>
         </member>
         <member name="F:Darnton.Blazor.Leaflet.InteropObject.JSObjectReference">
@@ -24,13 +19,12 @@
             The JavaScript runtime object reference.
             </summary>
         </member>
-        <member name="M:Darnton.Blazor.Leaflet.InteropObject.BindJsObjectReference(Microsoft.JSInterop.IJSRuntime,Microsoft.JSInterop.IJSObjectReference)">
+        <member name="M:Darnton.Blazor.Leaflet.InteropObject.BindJsObjectReference(Darnton.Blazor.Leaflet.LeafletMapJSBinder)">
             <summary>
             Creates the JavaScript object, stores a reference to it and the
             JavaScript runtime object used to create it.
             </summary>
-            <param name="jsRuntime">The JavaScript runtime instance used to create the object</param>
-            <param name="leafletMapModule">The module reference used to invoke this component's JavaScript function</param>
+            <param name="jsBinder">The JavaScript binder used to talk to the interop layer.</param>
             <returns>A task that represents the async create operation.</returns>
         </member>
         <member name="M:Darnton.Blazor.Leaflet.InteropObject.CreateJsObjectRef">
@@ -40,6 +34,16 @@
             <returns>The reference to the new JavaScript object.</returns>
         </member>
         <member name="M:Darnton.Blazor.Leaflet.InteropObject.DisposeAsync">
+            <inheritdoc/>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.InteropObject.GuardAgainstNullBinding(System.String)">
+            <summary>
+            Throws an <see cref="T:System.InvalidOperationException"/> if the JavaScript binding has not been
+            set up for this object.
+            </summary>
+            <param name="nullBindingMessage">The error message to be used when an exception is thrown.</param>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMapJSBinder.DisposeAsync">
             <inheritdoc/>
         </member>
         <member name="T:Darnton.Blazor.Leaflet.LeafletMap.InteractiveLayer">
@@ -121,9 +125,6 @@
             </summary>
         </member>
         <member name="M:Darnton.Blazor.Leaflet.LeafletMap.LeafletMapBase.OnAfterRenderAsync(System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.LeafletMapBase.DisposeAsync">
             <inheritdoc/>
         </member>
         <member name="T:Darnton.Blazor.Leaflet.LeafletMap.Map">
