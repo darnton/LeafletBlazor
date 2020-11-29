@@ -9,47 +9,42 @@
             Abstract base class for types that represent JavaScript objects.
             </summary>
         </member>
-        <member name="F:Darnton.Blazor.Leaflet.InteropObject._jsObjRef">
+        <member name="F:Darnton.Blazor.Leaflet.InteropObject.JSBinder">
+            <summary>
+            The JavaScript binder used to talk to the interop layer.
+            </summary>
+        </member>
+        <member name="F:Darnton.Blazor.Leaflet.InteropObject.JSObjectReference">
             <summary>
             The JavaScript runtime object reference.
             </summary>
         </member>
-        <member name="P:Darnton.Blazor.Leaflet.InteropObject.JsObjectRefId">
-            <summary>
-            The ID of the JavaScript runtime object reference, used as key to a collection of JavaScript objects.
-            </summary>
-        </member>
-        <member name="M:Darnton.Blazor.Leaflet.InteropObject.BindToJsRuntime(Microsoft.JSInterop.IJSRuntime)">
+        <member name="M:Darnton.Blazor.Leaflet.InteropObject.BindJsObjectReference(Darnton.Blazor.Leaflet.LeafletMapJSBinder)">
             <summary>
             Creates the JavaScript object, stores a reference to it and the
             JavaScript runtime object used to create it.
             </summary>
-            <param name="jsRuntime">The JavaScript runtime instance used to create the object</param>
+            <param name="jsBinder">The JavaScript binder used to talk to the interop layer.</param>
             <returns>A task that represents the async create operation.</returns>
         </member>
-        <member name="M:Darnton.Blazor.Leaflet.InteropObject.CreateJsObjectRef(Microsoft.JSInterop.IJSRuntime)">
+        <member name="M:Darnton.Blazor.Leaflet.InteropObject.CreateJsObjectRef">
             <summary>
             Creates the JavaScript object
             </summary>
-            <param name="jsRuntime">The JavaScript runtime instance used to create the object.</param>
             <returns>The reference to the new JavaScript object.</returns>
         </member>
-        <member name="T:Darnton.Blazor.Leaflet.JsRuntimeObjectRef">
-            <summary>
-            A reference to a JavaScript object, used to invoke functions
-            via JavaScript interop on previously created objects.
-            </summary>
+        <member name="M:Darnton.Blazor.Leaflet.InteropObject.DisposeAsync">
+            <inheritdoc/>
         </member>
-        <member name="P:Darnton.Blazor.Leaflet.JsRuntimeObjectRef.JsObjectRefId">
+        <member name="M:Darnton.Blazor.Leaflet.InteropObject.GuardAgainstNullBinding(System.String)">
             <summary>
-            JavaScript object reference id, used as key to a collection of JavaScript objects.
+            Throws an <see cref="T:System.InvalidOperationException"/> if the JavaScript binding has not been
+            set up for this object.
             </summary>
+            <param name="nullBindingMessage">The error message to be used when an exception is thrown.</param>
         </member>
-        <member name="M:Darnton.Blazor.Leaflet.JsRuntimeObjectRef.DisposeAsync">
-            <summary>
-            Disposes the reference to the object. Removes the reference from the JavaScript collection
-            </summary>
-            <returns>A ValueTask representing the async JavaScript invocation to remove the reference.</returns>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMapJSBinder.DisposeAsync">
+            <inheritdoc/>
         </member>
         <member name="T:Darnton.Blazor.Leaflet.LeafletMap.InteractiveLayer">
             <summary>
@@ -155,7 +150,7 @@
             <param name="elementId">The ID of the HTML element the map will be rendered in.</param>
             <param name="options">The <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.MapOptions"/> used to create the Map.</param>
         </member>
-        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Map.CreateJsObjectRef(Microsoft.JSInterop.IJSRuntime)">
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Map.CreateJsObjectRef">
             <inheritdoc/>
         </member>
         <member name="T:Darnton.Blazor.Leaflet.LeafletMap.MapOptions">
@@ -196,7 +191,7 @@
             <param name="latlng">The initial position of the marker.</param>
             <param name="options">The <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.MarkerOptions"/> used to create the marker.</param>
         </member>
-        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Marker.CreateJsObjectRef(Microsoft.JSInterop.IJSRuntime)">
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Marker.CreateJsObjectRef">
             <inheritdoc/>
         </member>
         <member name="T:Darnton.Blazor.Leaflet.LeafletMap.MarkerOptions">
@@ -233,7 +228,7 @@
             <param name="latLngs">An array of points defining the shape.</param>
             <param name="options">The <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.PolylineOptions"/> used to define the polyline.</param>
         </member>
-        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Polyline.CreateJsObjectRef(Microsoft.JSInterop.IJSRuntime)">
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Polyline.CreateJsObjectRef">
             <inheritdoc/>
         </member>
         <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Polyline.AddLatLng(Darnton.Blazor.Leaflet.LeafletMap.LatLng)">
@@ -276,7 +271,7 @@
             <param name="urlTemplate">A URL template string with formatting options for subdomain, zoom level, coordinates, and resolution.</param>
             <param name="options">The <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.TileLayerOptions"/> used to create the TileLayer.</param>
         </member>
-        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.TileLayer.CreateJsObjectRef(Microsoft.JSInterop.IJSRuntime)">
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.TileLayer.CreateJsObjectRef">
             <inheritdoc/>
         </member>
         <member name="T:Darnton.Blazor.Leaflet.LeafletMap.TileLayerOptions">

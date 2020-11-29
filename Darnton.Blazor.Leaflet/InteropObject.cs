@@ -1,5 +1,5 @@
 ﻿using Microsoft.JSInterop;
-using System.Text.Json.Serialization;
+using System;
 using System.Threading.Tasks;
 
 namespace Darnton.Blazor.Leaflet
@@ -7,36 +7,53 @@ namespace Darnton.Blazor.Leaflet
     /// <summary>
     /// Abstract base class for types that represent JavaScript objects.
     /// </summary>
-    public abstract class InteropObject
+    public abstract class InteropObject : IAsyncDisposable
     {
+        /// <summary>
+        /// The JavaScript binder used to talk to the interop layer.
+        /// </summary>
+        internal LeafletMapJSBinder JSBinder;
+
         /// <summary>
         /// The JavaScript runtime object reference.
         /// </summary>
-        protected JsRuntimeObjectRef _jsObjRef;
-
-        /// <summary>
-        /// The ID of the JavaScript runtime object reference, used as key to a collection of JavaScript objects.
-        /// </summary>
-        [JsonPropertyName("__jsObjRefId")]
-        public int JsObjectRefId { get { return _jsObjRef.JsObjectRefId; } }
+        internal IJSObjectReference JSObjectReference;
 
         /// <summary>
         /// Creates the JavaScript object, stores a reference to it and the
         /// JavaScript runtime object used to create it.
         /// </summary>
-        /// <param name="jsRuntime">The JavaScript runtime instance used to create the object</param>
+        /// <param name="jsBinder">The JavaScript binder used to talk to the interop layer.</param>
         /// <returns>A task that represents the async create operation.</returns>
-        public async Task BindToJsRuntime(IJSRuntime jsRuntime)
+        internal async Task BindJsObjectReference(LeafletMapJSBinder jsBinder)
         {
-            _jsObjRef = await CreateJsObjectRef(jsRuntime);
-            _jsObjRef.JSRuntime = jsRuntime;
+            JSBinder = jsBinder;
+            JSObjectReference = await CreateJsObjectRef();
         }
 
         /// <summary>
         /// Creates the JavaScript object
         /// </summary>
-        /// <param name="jsRuntime">The JavaScript runtime instance used to create the object.</param>
         /// <returns>The reference to the new JavaScript object.</returns>
-        protected abstract Task<JsRuntimeObjectRef> CreateJsObjectRef(IJSRuntime jsRuntime);
+        protected abstract Task<IJSObjectReference> CreateJsObjectRef();
+
+        /// <inheritdoc/>
+        public async ValueTask DisposeAsync()
+        {
+            await JSObjectReference.DisposeAsync();
+        }
+
+        /// <summary>
+        /// Throws an <see cref="InvalidOperationException"/> if the JavaScript binding has not been
+        /// set up for this object.
+        /// </summary>
+        /// <param name="nullBindingMessage">The error message to be used when an exception is thrown.</param>
+        protected void GuardAgainstNullBinding(string nullBindingMessage)
+        {
+            if (JSBinder is null)
+            {
+                throw new InvalidOperationException(nullBindingMessage);
+            }
+        }
     }
 }

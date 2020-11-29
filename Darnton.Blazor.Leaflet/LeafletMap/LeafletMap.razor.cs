@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System;
 using System.Threading.Tasks;
 
 namespace Darnton.Blazor.Leaflet.LeafletMap
@@ -27,8 +28,7 @@ namespace Darnton.Blazor.Leaflet.LeafletMap
         {
             if (firstRender)
             {
-                await Map.BindToJsRuntime(JSRuntime);
-                await TileLayer.BindToJsRuntime(JSRuntime);
+                await Map.BindJsObjectReference(new LeafletMapJSBinder(JSRuntime));
                 await TileLayer.AddTo(Map);
             }
         }

@@ -1,19 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Darnton.Blazor.Leaflet</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.1.2</Version>
     <Authors>Bernard Darnton</Authors>
     <Company>Bernard Darnton</Company>
     <Product>Leaflet.js Interop Library for Blazor</Product>
-    <Description>Leaflet.js Interop Library for Blazor</Description>
+    <Description>Leaflet.js Interop Library for Blazor - .NET 5</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>2020 Bernard Darnton</Copyright>
-    <AssemblyVersion>0.0.1.0</AssemblyVersion>
-    <FileVersion>0.0.1.0</FileVersion>
+    <AssemblyVersion>0.0.1.2</AssemblyVersion>
+    <FileVersion>0.0.1.2</FileVersion>
     <RootNamespace>Darnton.Blazor.Leaflet</RootNamespace>
   </PropertyGroup>
 
@@ -27,13 +27,13 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <None Include="wwwroot\leaflet-map\leaflet-map.js" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>
