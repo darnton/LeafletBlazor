@@ -6,3 +6,57 @@
 <div class="my-3">
     <LeafletMap Map="PositionMap" TileLayer="OpenStreetMapsTileLayer" />
 </div>
+
+<div class="my-3">
+    <EditForm Model="MapStateViewModel" OnValidSubmit="SetMapState">
+        <h3>Map State</h3>
+        <button class="btn btn-primary my-3" @onclick="GetMapState">Get Map State</button>
+        <button type="submit" class="btn btn-primary my-3">Set Map State</button>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="centreLat">Centre Latitude</label>
+                    <InputNumber id="centreLat" @bind-Value="@MapStateViewModel.MapCentreLatitude" class="form-control" placeholder="Centre latitude" />
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="centreLng">Centre Longitude</label>
+                    <InputNumber id="centreLng" @bind-Value="@MapStateViewModel.MapCentreLongitude" class="form-control" placeholder="Centre longitude" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="zoom">Zoom</label>
+                    <InputNumber id="zoom" @bind-Value="@MapStateViewModel.Zoom" class="form-control" placeholder="Zoom level" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="containerSize">Size</label>
+                    <input type="text" readonly class="form-control-plaintext" id="containerSize" value="@MapStateViewModel.MapContainerSize" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="pixelBounds">Pixel Bounds</label>
+                    <input type="text" readonly class="form-control-plaintext" id="pixelBounds" value="@MapStateViewModel.MapViewPixelBounds" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="pixelOrigin">Pixel Origin</label>
+                    <input type="text" readonly class="form-control-plaintext" id="pixelOrigin" value="@MapStateViewModel.MapLayerPixelOrigin" />
+                </div>
+            </div>
+        </div>
+</EditForm>
+</div>

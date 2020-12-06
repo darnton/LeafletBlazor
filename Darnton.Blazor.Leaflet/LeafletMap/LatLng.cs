@@ -1,10 +1,13 @@
-﻿namespace Darnton.Blazor.Leaflet.LeafletMap
+﻿using Microsoft.JSInterop;
+using System.Threading.Tasks;
+
+namespace Darnton.Blazor.Leaflet.LeafletMap
 {
     /// <summary>
     /// A point with a latitude and longitude.
     /// <see href="https://leafletjs.com/reference-1.7.1.html#latlng"/>
     /// </summary>
-    public class LatLng
+    public class LatLng : InteropObject
     {
         /// <summary>
         /// Latitude in degrees.
@@ -24,6 +27,18 @@
         {
             Lat = lat;
             Lng = lng;
+        }
+
+        /// <inheritdoc/>
+        protected override async Task<IJSObjectReference> CreateJsObjectRef()
+        {
+            return await JSBinder.JSRuntime.InvokeAsync<IJSObjectReference>("L.latLng", Lat, Lng);
+        }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            return $"({Lat}, {Lng})";
         }
     }
 }

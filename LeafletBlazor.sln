@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Darnton.Blazor.Leaflet", "Darnton.Blazor.Leaflet\Darnton.Blazor.Leaflet.csproj", "{C18F445E-BD95-45E4-8C87-A5B7445F3B19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeafletBlazorTestRig", "LeafletBlazorTestRig\LeafletBlazorTestRig.csproj", "{57B624F5-D518-41C0-9A8D-87A72D326C9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeafletBlazorTestRig", "LeafletBlazorTestRig\LeafletBlazorTestRig.csproj", "{57B624F5-D518-41C0-9A8D-87A72D326C9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

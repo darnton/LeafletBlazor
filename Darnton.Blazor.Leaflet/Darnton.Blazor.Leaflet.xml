@@ -46,6 +46,34 @@
         <member name="M:Darnton.Blazor.Leaflet.LeafletMapJSBinder.DisposeAsync">
             <inheritdoc/>
         </member>
+        <member name="T:Darnton.Blazor.Leaflet.LeafletMap.Bounds">
+            <summary>
+            A rectangular area in pixel coordinates.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.Bounds.Min">
+            <summary>
+            The top left corner of the bounds.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.Bounds.Max">
+            <summary>
+            The bottom right corner of the bounds.
+            </summary>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Bounds.#ctor(Darnton.Blazor.Leaflet.LeafletMap.Point,Darnton.Blazor.Leaflet.LeafletMap.Point)">
+            <summary>
+            Constructs a Bounds instance.
+            </summary>
+            <param name="min">The top left corner of the bounds.</param>
+            <param name="max">The bottom right corner of the bounds.</param>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Bounds.CreateJsObjectRef">
+            <inheritdoc/>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Bounds.ToString">
+            <inheritsdoc/>
+        </member>
         <member name="T:Darnton.Blazor.Leaflet.LeafletMap.InteractiveLayer">
             <summary>
             A <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Layer"/> that the user can interact with.
@@ -74,6 +102,28 @@
             </summary>
             <param name="lat">Latitude in degrees.</param>
             <param name="lng">Longitude in degrees.</param>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.LatLng.CreateJsObjectRef">
+            <inheritdoc/>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.LatLng.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Darnton.Blazor.Leaflet.LeafletMap.LatLngBounds">
+            <summary>
+            A rectangular geographical area on a map.
+            <see href="https://leafletjs.com/reference-1.7.1.html#latlngbounds"/>
+            </summary>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.LatLngBounds.#ctor(Darnton.Blazor.Leaflet.LeafletMap.LatLng,Darnton.Blazor.Leaflet.LeafletMap.LatLng)">
+            <summary>
+            Constructs a LatLngBounds instance.
+            </summary>
+            <param name="corner1">The first corner defining the bounds.</param>
+            <param name="corner2">The second corner defining the bounds, diagonally opposite the first.</param>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.LatLngBounds.CreateJsObjectRef">
+            <inheritdoc/>
         </member>
         <member name="T:Darnton.Blazor.Leaflet.LeafletMap.Layer">
             <summary>
@@ -130,7 +180,8 @@
         <member name="T:Darnton.Blazor.Leaflet.LeafletMap.Map">
             <summary>
             A leaflet Map object, used to create a Map on a page.
-            <see href="https://leafletjs.com/reference-1.7.1.html#map-methods-for-modifying-map-state"/>.
+            <see href="https://leafletjs.com/reference-1.7.1.html#map-methods-for-getting-map-state"/>
+            and <see href="https://leafletjs.com/reference-1.7.1.html#map-methods-for-modifying-map-state"/>.
             </summary>
         </member>
         <member name="P:Darnton.Blazor.Leaflet.LeafletMap.Map.ElementId">
@@ -152,6 +203,79 @@
         </member>
         <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Map.CreateJsObjectRef">
             <inheritdoc/>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Map.GetCenter">
+            <summary>
+            Gets the point at the centre of the map view.
+            </summary>
+            <returns>A <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.LatLng"/> representing the geographical centre of the map.</returns>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Map.GetBounds">
+            <summary>
+            Gets the geographical bounds of the map view.
+            </summary>
+            <returns>A <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.LatLngBounds"/> object representing the geographical bounds of the map.</returns>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Map.GetZoom">
+            <summary>
+            Gets the zoom level of the map view.
+            </summary>
+            <returns>The zoom level.</returns>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Map.GetMinZoom">
+            <summary>
+            Gets the minimum zoom level of the map view.
+            </summary>
+            <returns>The minimum zoom level.</returns>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Map.GetMaxZoom">
+            <summary>
+            Gets the maximum zoom level of the map view.
+            </summary>
+            <returns>The maximum zoom level.</returns>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Map.GetBoundsZoom(Darnton.Blazor.Leaflet.LeafletMap.LatLngBounds,System.Boolean,Darnton.Blazor.Leaflet.LeafletMap.Point)">
+            <summary>
+            Gets the maximum zoom level on which the bounds fit the map view.
+            </summary>
+            <param name="bounds">The <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.LatLngBounds"/> to fit to the map.</param>
+            <param name="inside">A flag indicating the fit direction. If true, method returns minimum zoom level
+            on which the map fits into the bounds.</param>
+            <param name="padding">The padding in pixels.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Map.GetSize">
+            <summary>
+            Gets the size of the map container in pixels.
+            </summary>
+            <returns>A <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Point"/> representing the size of the map container in pixels.</returns>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Map.GetPixelBounds">
+            <summary>
+            Gets the bounds of the map view in projected pixel coordinates.
+            </summary>
+            <returns>A <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Bounds"/> representing the size of the map container in pixels.</returns>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Map.GetPixelOrigin">
+            <summary>
+            Gets the projected pixel coordinates of the top left point of the map layer.
+            </summary>
+            <returns>A <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Point"/> representing top left point of the map in pixels.</returns>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Map.GetPixelWorldBounds(System.Nullable{System.Int32})">
+            <summary>
+            Gets the world's bounds in pixel coordinates.
+            </summary>
+            <param name="zoom">The zoom level used to calculate the bounds. Current map zoom level is used if null or omitted.</param>
+            <returns>A <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Bounds"/> representing the size of the map container in pixels.</returns>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Map.SetView(Darnton.Blazor.Leaflet.LeafletMap.LatLng,System.Int32)">
+            <summary>
+            Sets the view of the map with the given centre and zoom.
+            </summary>
+            <param name="center">A <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.LatLng"/> representing the geogrpahical centre of the map.</param>
+            <param name="zoom">The zoom level of the map.</param>
+            <returns>The Map.</returns>
         </member>
         <member name="T:Darnton.Blazor.Leaflet.LeafletMap.MapOptions">
             <summary>
@@ -204,6 +328,40 @@
             A vector overlay <see cref="T:Darnton.Blazor.Leaflet.LeafletMap.Layer"/>.
             <see href="https://leafletjs.com/reference-1.7.1.html#path"/>
             </summary>
+        </member>
+        <member name="T:Darnton.Blazor.Leaflet.LeafletMap.Point">
+            <summary>
+            A point with x and y coordinates in pixels.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.Point.X">
+            <summary>
+            The x coordinate in pixels.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.Point.Y">
+            <summary>
+            The y corrdinate in pixels.
+            </summary>
+        </member>
+        <member name="P:Darnton.Blazor.Leaflet.LeafletMap.Point.Round">
+            <summary>
+            Flag indicating whether coordinate values should be rounded.
+            </summary>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Point.#ctor(System.Double,System.Double,System.Boolean)">
+            <summary>
+            Constructs a point
+            </summary>
+            <param name="x">The x coordinate in pixels.</param>
+            <param name="y">The y corrdinate in pixels.</param>
+            <param name="round">Flag indicating whether coordinate values should be rounded.</param>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Point.CreateJsObjectRef">
+            <inheritdoc/>
+        </member>
+        <member name="M:Darnton.Blazor.Leaflet.LeafletMap.Point.ToString">
+            <inheritdoc/>
         </member>
         <member name="T:Darnton.Blazor.Leaflet.LeafletMap.Polyline">
             <summary>
