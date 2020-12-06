@@ -1,5 +1,13 @@
 ﻿export let LeafletMap = {
 
+    Map: {
+
+        setView: function (map, center, zoom) {
+            map.setView(center, zoom);
+        }
+
+    },
+
     Layer: {
 
         addTo: function (layer, map) {

@@ -1,4 +1,5 @@
 ﻿using Darnton.Blazor.Leaflet.LeafletMap;
+using LeafletBlazorTestRig.Models;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Threading.Tasks;
@@ -9,13 +10,22 @@ namespace LeafletBlazorTestRig.Pages
     {
         protected Map PositionMap;
         protected TileLayer OpenStreetMapsTileLayer;
+        protected MapStateViewModel MapStateViewModel;
+
 
         public IndexBase() : base()
         {
-            PositionMap = new Map("testMap", new MapOptions //Centred on New Zealand
+            var mapCentre = new LatLng(-42, 175); // Centred on New Zealand
+            MapStateViewModel = new MapStateViewModel
             {
-                Center = new LatLng(-42, 175),
+                MapCentreLatitude = mapCentre.Lat,
+                MapCentreLongitude = mapCentre.Lng,
                 Zoom = 4
+            };
+            PositionMap = new Map("testMap", new MapOptions
+            {
+                Center = mapCentre,
+                Zoom = MapStateViewModel.Zoom
             });
             OpenStreetMapsTileLayer = new TileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -25,6 +35,24 @@ namespace LeafletBlazorTestRig.Pages
                         @"<a href=""https://creativecommons.org/licenses/by-sa/2.0/"">CC-BY-SA</a>"
                 }
             );
+        }
+
+        protected async void GetMapState()
+        {
+            var mapCentre = await PositionMap.GetCenter();
+            MapStateViewModel.MapCentreLatitude = mapCentre.Lat;
+            MapStateViewModel.MapCentreLongitude = mapCentre.Lng;
+            MapStateViewModel.Zoom = await PositionMap.GetZoom();
+            MapStateViewModel.MapContainerSize = await PositionMap.GetSize();
+            MapStateViewModel.MapViewPixelBounds = await PositionMap.GetPixelBounds();
+            MapStateViewModel.MapLayerPixelOrigin = await PositionMap.GetPixelOrigin();
+            StateHasChanged();
+        }
+
+        protected async void SetMapState()
+        {
+            var mapCentre = new LatLng(MapStateViewModel.MapCentreLatitude, MapStateViewModel.MapCentreLongitude);
+            await PositionMap.SetView(mapCentre, MapStateViewModel.Zoom);
         }
 
         public async ValueTask DisposeAsync()

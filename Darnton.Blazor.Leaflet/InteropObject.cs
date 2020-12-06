@@ -48,7 +48,7 @@ namespace Darnton.Blazor.Leaflet
         /// set up for this object.
         /// </summary>
         /// <param name="nullBindingMessage">The error message to be used when an exception is thrown.</param>
-        protected void GuardAgainstNullBinding(string nullBindingMessage)
+        internal void GuardAgainstNullBinding(string nullBindingMessage)
         {
             if (JSBinder is null)
             {
