@@ -58,5 +58,65 @@
                 </div>
             </div>
         </div>
-</EditForm>
+    </EditForm>
+
+    <EditForm Model="MarkerViewModel" OnValidSubmit="AddMarkerAtMapCenter">
+        <h3>Add Marker at Map Centre</h3>
+        <button type="submit" class="btn btn-primary my-3">Add Marker</button>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="keyboard">Marker has a Tab Stop</label>
+                    <InputCheckbox id="keyboard" @bind-Value="@MarkerViewModel.Keyboard" class="form-control" />
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="title">Title of Marker</label>
+                    <InputText id="title" @bind-Value="@MarkerViewModel.Title" class="form-control" placeholder="Title of marker" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="alt">Icon Alt Description</label>
+                    <InputText id="alt" @bind-Value="@MarkerViewModel.Alt" class="form-control" placeholder="Icon Alt description" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="zindexoffset">Z Index Offset</label>
+                    <InputNumber id="zindexoffset" @bind-Value="@MarkerViewModel.ZIndexOffset" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="opacity">Opacity</label>
+                    <input type="range" min="0.0" max="1.0" step="0.1" class="form-control-range" id="opacity" @bind-value="@MarkerViewModel.Opacity" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="riseonhover">Rise of Hover</label>
+                    <InputCheckbox id="riseonhover" @bind-Value="@MarkerViewModel.RiseOnHover" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="riseoffset">Rise Offset</label>
+                    <InputNumber id="riseoffset" @bind-Value="@MarkerViewModel.RiseOffset" class="form-control" />
+                </div>
+            </div>
+        </div>
+    </EditForm>
+
 </div>

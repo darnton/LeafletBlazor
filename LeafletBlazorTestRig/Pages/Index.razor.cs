@@ -11,6 +11,7 @@ namespace LeafletBlazorTestRig.Pages
         protected Map PositionMap;
         protected TileLayer OpenStreetMapsTileLayer;
         protected MapStateViewModel MapStateViewModel;
+        protected MarkerViewModel MarkerViewModel;
 
 
         public IndexBase() : base()
@@ -35,6 +36,9 @@ namespace LeafletBlazorTestRig.Pages
                         @"<a href=""https://creativecommons.org/licenses/by-sa/2.0/"">CC-BY-SA</a>"
                 }
             );
+
+            MarkerViewModel = new MarkerViewModel();
+
         }
 
         protected async void GetMapState()
@@ -53,6 +57,23 @@ namespace LeafletBlazorTestRig.Pages
         {
             var mapCentre = new LatLng(MapStateViewModel.MapCentreLatitude, MapStateViewModel.MapCentreLongitude);
             await PositionMap.SetView(mapCentre, MapStateViewModel.Zoom);
+        }
+
+        protected async void AddMarkerAtMapCenter()
+        {
+            var mapCentre = await PositionMap.GetCenter();
+            var marker = new Marker(mapCentre, new MarkerOptions
+            {
+                Keyboard = MarkerViewModel.Keyboard,
+                Title = MarkerViewModel.Title,
+                Alt = MarkerViewModel.Alt,
+                ZIndexOffset = MarkerViewModel.ZIndexOffset,
+                Opacity = MarkerViewModel.Opacity,
+                RiseOnHover = MarkerViewModel.RiseOnHover,
+                RiseOffset = MarkerViewModel.RiseOffset,
+            });
+
+            await marker.AddTo(PositionMap);
         }
 
         public async ValueTask DisposeAsync()
