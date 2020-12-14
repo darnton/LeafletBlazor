@@ -40,7 +40,8 @@ namespace Darnton.Blazor.Leaflet
         /// <inheritdoc/>
         public async ValueTask DisposeAsync()
         {
-            await JSObjectReference.DisposeAsync();
+            if (JSObjectReference != null)
+                await JSObjectReference.DisposeAsync();
         }
 
         /// <summary>
